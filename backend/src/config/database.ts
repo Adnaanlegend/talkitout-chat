@@ -14,12 +14,7 @@ export const connectDB = async () => {
     console.error("❌ MongoDB connection error:", error);
 
     if (message.includes("querySrv ECONNREFUSED")) {
-      console.error(
-        "\nHint: Node/Bun could not resolve the Atlas SRV record (common on Windows).\n" +
-          "In MongoDB Atlas → Connect → Drivers, copy the standard connection string\n" +
-          "(mongodb://... not mongodb+srv://) and set MONGODB_URI in backend/.env.\n" +
-          "Or fix DNS (e.g. use 8.8.8.8 / 1.1.1.1) so SRV lookups succeed.\n"
-      );
+      console.error(error);
     }
 
     process.exit(1); // exit with failure
