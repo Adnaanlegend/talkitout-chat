@@ -8,12 +8,13 @@ WORKDIR /app/web
 COPY web/package.json web/bun.lock* ./
 RUN bun install --frozen-lockfile
 COPY web/ ./
-
-ARG VITE_CLERK_PUBLISHABLE_KEY
-ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
-ARG VITE_API_URL
-ENV VITE_API_URL=$VITE_API_URL
 RUN bun run build
+
+# ARG VITE_CLERK_PUBLISHABLE_KEY
+# ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
+# ARG VITE_API_URL
+# ENV VITE_API_URL=$VITE_API_URL
+
 
 # install backend dependencies
 WORKDIR /app/backend
@@ -22,9 +23,9 @@ RUN bun install --frozen-lockfile
 COPY backend/ ./
 
 # expose port
-EXPOSE 3000
+EXPOSE 5000
 # set non-sensitive defaults 
-ENV PORT=3000
+ENV PORT=5000
 ENV NODE_ENV=production
 
 # start the application
