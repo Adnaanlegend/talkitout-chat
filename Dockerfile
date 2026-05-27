@@ -8,12 +8,12 @@ WORKDIR /app/web
 COPY web/package.json web/bun.lock* ./
 RUN bun install --frozen-lockfile
 COPY web/ ./
-RUN bun run build
 
-# ARG VITE_CLERK_PUBLISHABLE_KEY
-# ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
-# ARG VITE_API_URL
-# ENV VITE_API_URL=$VITE_API_URL
+# Vite inlines these at build time — set them in Sevalla as build environment variables
+ARG VITE_CLERK_PUBLISHABLE_KEY
+ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
+
+RUN bun run build
 
 
 # install backend dependencies
