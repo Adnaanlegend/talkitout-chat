@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://talkitout-chat-nxmjl.sevalla.app/api",
+  baseURL: import.meta.env.VITE_API_URL + "/api" ,
   withCredentials: true,
 });
 
